@@ -1,5 +1,5 @@
 # GOT Maze Challenge
-Write a maze solver and compiled as a shared object (.so) file. Use `LD_PRELOAD` to load the solver and solve the maze by hijacking some functions.
+Hijack some functions using the GOT table to solve the maze.
 
 ### Description
 1. The main program (maze.c) registers the address of its main function, initializes the library, and loads an existing maze from /maze.txt. 
@@ -15,4 +15,4 @@ for s in [ f"move_{i}" for i in range(1200)]:
    if s in elf.got:
       print("{:<12s} {:<10x} {:<10x}".format(s, elf.got[s], elf.symbols[s]))
 ```
-4. After getting the `remote_solver.so` file, run `LD_PRELOAD=./remote_solver.so ./maze` to solve the maze.
+4. After compiled as a shared object `remote_solver.so` file, run `LD_PRELOAD=./remote_solver.so ./maze` to solve the maze.
